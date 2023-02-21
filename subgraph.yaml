@@ -1,0 +1,27 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: AuthNFTFactory
+    network: mumbai
+    source:
+      address: "0xB319DB6be72754616800f12A87d1beC470d68178"
+      abi: AuthNFTFactory
+      startBlock: 32199601
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - NewAuthNFT
+        - OwnershipTransferred
+      abis:
+        - name: AuthNFTFactory
+          file: ./abis/AuthNFTFactory.json
+      eventHandlers:
+        - event: NewAuthNFT(address,address)
+          handler: handleNewAuthNFT
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+      file: ./src/auth-nft-factory.ts
