@@ -1,17 +1,22 @@
-type NewAuthNFT @entity(immutable: true) {
-  id: Bytes!
-  _owner: Bytes! # address
-  _nft: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type AuthNFT @entity(immutable: true) {
+  id: ID!
+  owner: Organization!
+  tokens: [Token!] @derivedFrom(field: "nft")
 }
 
-type OwnershipTransferred @entity(immutable: true) {
-  id: Bytes!
-  previousOwner: Bytes! # address
-  newOwner: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Token @entity {
+  id: ID!
+  tokenId: String!
+  nft: AuthNFT!
+  owner: User!
+}
+
+type User @entity {
+  id: ID!
+  tokens: [Token!] @derivedFrom(field: "owner")
+}
+
+type Organization @entity {
+  id: ID!
+  authNFTs: [AuthNFT!] @derivedFrom(field: "owner")
 }

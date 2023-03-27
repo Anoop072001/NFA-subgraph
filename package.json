@@ -4,15 +4,18 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node undefined akhil-is-watching/DIM",
-    "create-local": "graph create --node http://localhost:8020/ akhil-is-watching/DIM",
-    "remove-local": "graph remove --node http://localhost:8020/ akhil-is-watching/DIM",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 akhil-is-watching/DIM",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ anoop072001/nfa",
+    "create-local": "graph create --node http://localhost:8020/ anoop072001/nfa",
+    "remove-local": "graph remove --node http://localhost:8020/ anoop072001/nfa",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 anoop072001/nfa",
     "test": "graph test"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.41.0",
-    "@graphprotocol/graph-ts": "0.29.1"
+    "@graphprotocol/graph-ts": "0.29.1",
+    "ethers": "^5.7.2"
   },
-  "devDependencies": { "matchstick-as": "0.5.0" }
+  "devDependencies": {
+    "matchstick-as": "0.5.0"
+  }
 }
